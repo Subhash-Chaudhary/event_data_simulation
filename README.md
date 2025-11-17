@@ -438,6 +438,4 @@ If you use this tool in your research, please cite:
 ---
 
 **Built for researchers, students, and developers exploring neuromorphic vision without expensive hardware constraints.**
-```
 
-***
