@@ -1,0 +1,16 @@
+# Production dependencies for Event Camera Simulation
+opencv-python>=4.8.0
+numpy>=1.24.0
+pandas>=2.0.0
+matplotlib>=3.6.0
+scipy>=1.10.0
+Pillow>=9.4.0
+
+# Configuration and environment management
+python-dotenv>=1.0.0
+
+# Progress tracking and user interface
+tqdm>=4.65.0
+
+# File handling and compression
+h5py>=3.8.0

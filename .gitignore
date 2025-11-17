@@ -1,0 +1,138 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Output directories
+output/
+results/
+exports/
+sample_videos/
+temp/
+tmp/
+
+# Test outputs and coverage
+.coverage
+.pytest_cache/
+.tox/
+htmlcov/
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Profiling data
+.prof
+
+# Logs
+*.log
+logs/
+
+# Documentation builds
+docs/_build/
+docs/build/
+site/
+
+# Database files
+*.db
+*.sqlite3
+
+# Large files and media
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.webm
+*.m4v
+*.flv
+*.mpg
+*.mpeg
+*.m2v
+*.mp2
+*.mpe
+*.vob
+*.dat
+*.ts
+*.m4v
+*.3gp
+*.3g2
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+config.json
+custom_config.json
+benchmark_results/
+performance_reports/
+
+# Ignore everything inside inputs/ and output/
+inputs/*
+output/*
+
+# BUT keep the folders themselves
+!inputs/
+!output/
+
+# OPTIONAL — keep placeholder files if you want
+!inputs/.keep
+!output/.keep
