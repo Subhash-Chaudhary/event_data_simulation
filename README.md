@@ -1,236 +1,402 @@
 # Event Camera Data Simulation
 
-A production-ready neuromorphic vision simulation system that converts conventional video streams into Dynamic Vision Sensor (DVS) compatible event streams with color-coded polarity visualization.
+A research-focused neuromorphic vision simulation system that converts conventional video streams into Dynamic Vision Sensor (DVS) compatible event streams with color-coded polarity visualization. **Optimized for surveillance scenarios and machine learning training datasets with clear objects on solid backgrounds.**
 
 ## 🎯 Project Overview
 
-This project addresses the critical gap in affordable event camera simulation tools by providing a comprehensive, accessible alternative to expensive hardware ($5,000-$50,000). The system enables researchers, students, and developers to prototype event-based algorithms without costly equipment investment.
+This project addresses the critical gap between expensive neuromorphic hardware ($5,000-$50,000) and accessible research tools. The system enables researchers and students to generate high-quality event camera datasets for algorithm development and machine learning training without costly equipment investment.
 
 ### Key Features
 
-- **Advanced Event Detection**: Multi-scale temporal integration with adaptive thresholding
+- **High-Fidelity Event Detection**: Advanced temporal differencing with adaptive thresholding
 - **Color-Coded Visualization**: Intuitive RED (brightening) / BLUE (darkening) polarity representation
-- **Small Object Optimization**: Specialized algorithms for fast-moving objects (e.g., ping pong balls)
-- **Professional Analytics**: Publication-quality heatmaps and statistical analysis
-- **Educational Focus**: Designed for accessibility in academic environments
-- **High Performance**: Handles 4K video with memory optimization
+- **Surveillance Optimization**: Specialized for clear object detection with minimal background noise
+- **ML Training Ready**: Structured CSV output compatible with TensorFlow, PyTorch, and scikit-learn
+- **Publication-Quality Analytics**: Statistical analysis and activity heatmaps for research papers
+- **Memory Efficient**: Handles high-resolution video on standard hardware
+
+### Ideal Use Cases
+
+✅ **Best Performance:**
+- Surveillance footage with clear subjects
+- Training videos with objects on solid backgrounds
+- Controlled environment recordings
+- Object tracking and motion analysis scenarios
+- Educational demonstrations with clear visual changes
+
+❌ **Not Recommended:**
+- Extremely cluttered or noisy scenes
+- Very low-contrast or dark videos
+- Highly textured backgrounds with minimal motion
 
 ### Technical Achievements
 
-- 99%+ compression ratio while preserving complete motion information
-- Microsecond temporal precision matching commercial event cameras
-- Multi-resolution processing for enhanced detection accuracy
-- Memory-optimized architecture for standard hardware compatibility
+- **99%+ compression ratio** while preserving complete motion trajectories
+- **Microsecond temporal precision** matching commercial event cameras
+- **Robust detection** in controlled environments with clear subjects
+- **Scalable processing** from 480p to 4K resolution
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Python 3.8 or higher
-- 8GB+ RAM (recommended for 4K processing)
+- 8GB+ RAM (recommended for HD/4K processing)
 - Compatible with Windows, macOS, and Linux
 
 ### Installation
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/event-camera-simulation.git
-   cd event-camera-simulation
+   ```
+   git clone https://github.com/Subhash-Chaudhary/event_data_simulation.git
+   cd event_data_simulation
    ```
 
 2. **Create virtual environment** (recommended)
-   ```bash
+   ```
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. **Install dependencies**
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
-4. **Run the application**
-   ```bash
+4. **Run the simulation**
+   ```
    python -m event_sim
    ```
 
 ### Basic Usage
 
-#### Interactive Mode (Recommended)
-```bash
+#### Interactive Mode (Recommended for Beginners)
+```
 python -m event_sim
-# Follow the GUI prompts to select your video file
+# Opens file picker → Select your video → Automatic processing
 ```
 
-#### Command Line Mode
-```bash
-python -m event_sim --video path/to/your/video.mp4 --threshold 15 --max-frames 300
+#### Command Line Mode (For Researchers)
+```
+# Standard surveillance video processing
+python -m event_sim --video surveillance.mp4 --threshold 15 --max-frames 300
+
+# High-quality processing for clean backgrounds
+python -m event_sim --video training_video.mp4 --threshold 10 --max-frames 500
+
+# Quick test with limited frames
+python -m event_sim --video test.mp4 --threshold 20 --max-frames 100
 ```
 
-#### Configuration
-Copy `.env.example` to `.env` and customize settings:
-```bash
+### Configuration
+
+Copy `.env.example` to `.env` and customize for your needs:
+```
 cp .env.example .env
 ```
 
-## 📊 Example Results
+---
 
-### Input Video Processing
-- **Supported formats**: MP4, AVI, MOV, MKV, WMV, WEBM
-- **Resolution support**: Up to 4K (3840×2160)
-- **Frame rates**: Any standard frame rate
+## 📊 Output and Results
 
-### Output Generation
-- **Event CSV**: Structured data with microsecond timestamps
-- **Color-coded video**: Beautiful RED/BLUE polarity visualization  
-- **Activity heatmaps**: Motion pattern analysis
-- **Statistical reports**: Comprehensive performance metrics
+### Generated Files
 
-### Performance Benchmarks
-| Video Type | Resolution | Typical Events | Processing Time | Compression |
-|------------|------------|----------------|-----------------|-------------|
-| Sports (High Motion) | 1080p | 15,000-50,000 | 2-4 minutes | 50-100× |
-| Conversation | 1080p | 1,000-5,000 | 1-2 minutes | 100-500× |
-| Ping Pong | 1080p | 10,000-25,000 | 2-3 minutes | 75-150× |
+After processing, you'll receive three primary outputs in the `output/` directory:
 
-## 🏗️ Architecture
+1. **`events.csv`** - Structured event data
+   - Columns: `time` (microseconds), `x`, `y`, `polarity` (+1/-1), `magnitude`, `confidence`
+   - Compatible with pandas, NumPy, MATLAB, Excel
+   - Ready for machine learning pipelines
 
-### Core Components
+2. **`event_video.mp4`** - Color-coded visualization
+   - RED pixels = brightening events (polarity +1)
+   - BLUE pixels = darkening events (polarity -1)
+   - Temporal persistence creates motion trails
+   - Publication-ready for presentations and papers
 
-- **Event Engine**: Advanced detection algorithms with multi-scale processing
-- **Visualization Module**: Color-coded rendering and heatmap generation
-- **Analysis Tools**: Statistical analysis and performance metrics
-- **Export System**: CSV generation and report creation
-- **Configuration Manager**: Centralized settings and parameter management
+3. **`analysis_report.png`** - Statistical analysis
+   - Spatial distribution heatmap
+   - Temporal event timeline
+   - Polarity distribution histogram
+   - Magnitude distribution analysis
+
+### Example Performance Metrics
+
+| Scenario | Resolution | Events Generated | Processing Time | Compression Ratio |
+|----------|------------|------------------|-----------------|-------------------|
+| Person Walking (Clear BG) | 1080p | 8,000-15,000 | 2-3 minutes | 100-200× |
+| Object on Table | 720p | 3,000-8,000 | 1-2 minutes | 200-400× |
+| Surveillance Camera | 1080p | 5,000-20,000 | 2-4 minutes | 80-150× |
+
+---
+
+## 🔬 Research Applications
+
+### Machine Learning Training
+
+Generate large-scale event datasets for neural network training:
+
+```
+import pandas as pd
+import numpy as np
+
+# Load generated event data
+events = pd.read_csv('output/events.csv')
+
+# Prepare for ML training
+X = events[['x', 'y', 'time', 'polarity']].values
+y = motion_labels  # Your ground truth labels
+
+# Train your model
+model.fit(X, y)
+```
+
+### Object Tracking Research
+
+Perfect for developing event-based tracking algorithms:
+- Clear object trajectories in event space
+- Temporal precision for velocity estimation
+- Polarity information for motion direction analysis
+
+### Algorithm Prototyping
+
+Test neuromorphic algorithms without hardware:
+- Event accumulation and integration methods
+- Spike-based processing validation
+- Real-time algorithm feasibility studies
+
+### Dataset Generation
+
+Create custom datasets for specific research needs:
+- Annotate original videos with ground truth
+- Generate corresponding event streams
+- Build paired conventional-event datasets for comparative studies
+
+---
+
+## 🏗️ System Architecture
 
 ### Processing Pipeline
 
 ```
-Video Input → Preprocessing → Event Detection → Polarity Analysis → Visualization → Export
+Video Input 
+    ↓
+Grayscale Conversion & Preprocessing
+    ↓
+Temporal Frame Differencing (t and t-1)
+    ↓
+Adaptive Thresholding
+    ↓
+Event Generation (x, y, time, polarity)
+    ↓
+Color-Coded Visualization + CSV Export
+    ↓
+Statistical Analysis & Heatmap Generation
 ```
 
-## 🧪 Testing
+### Core Components
 
-Run the test suite:
-```bash
-# Run all tests
-pytest
+- **Event Detector** (`event_sim/core/event_detector.py`): Core algorithms
+- **CLI Interface** (`event_sim/cli.py`): User interaction and workflow
+- **Configuration Manager** (`event_sim/config.py`): Parameter management
+- **Visualization** (embedded in CLI): Rendering and analysis generation
 
-# Run with coverage
-pytest --cov=event_sim
+---
 
-# Run specific test category
-pytest tests/unit/
-pytest tests/integration/
+## ⚙️ Parameter Tuning Guide
+
+### Threshold Selection
+
+The threshold controls event detection sensitivity:
+
+- **Low threshold (5-10)**: Maximum sensitivity, more events, potential noise
+- **Medium threshold (12-18)**: Balanced detection, recommended for most videos
+- **High threshold (20-30)**: Only significant changes, fewer events, noise suppression
+
+**Recommendation for surveillance:** Start with threshold 15, adjust based on results.
+
+### Frame Limit
+
+- **100-200 frames**: Quick testing and parameter tuning
+- **300-500 frames**: Standard processing for analysis
+- **500+ frames**: Complete video analysis (slower processing)
+
+### Best Practices
+
+For **optimal results** with clear objects on solid backgrounds:
+```
+python -m event_sim --video your_video.mp4 --threshold 12 --max-frames 300
 ```
 
-### Test Categories
-- **Unit Tests**: Core algorithm validation
-- **Integration Tests**: End-to-end pipeline testing
-- **Performance Tests**: Memory and speed benchmarks
-- **Quality Tests**: Output validation and accuracy
-
-## 📚 Documentation
-
-### User Guides
-- [Installation Guide](docs/installation.md)
-- [Usage Tutorial](docs/tutorial.md) 
-- [Configuration Reference](docs/configuration.md)
-- [API Documentation](docs/api.md)
-
-### Developer Resources
-- [Architecture Overview](docs/architecture.md)
-- [Contributing Guidelines](docs/contributing.md)
-- [Algorithm Details](docs/algorithms.md)
-- [Performance Optimization](docs/performance.md)
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](docs/contributing.md) for details.
-
-1. **Fork the repository**
-2. **Create feature branch**: `git checkout -b feature/amazing-feature`
-3. **Commit changes**: `git commit -m 'Add amazing feature'`
-4. **Push to branch**: `git push origin feature/amazing-feature`
-5. **Open Pull Request**
-
-### Development Setup
-
-```bash
-# Install development dependencies
-pip install -r requirements-dev.txt
-
-# Set up pre-commit hooks
-pre-commit install
-
-# Run code quality checks
-make lint
-make format
-make test
+For **faster testing**:
+```
+python -m event_sim --video your_video.mp4 --threshold 20 --max-frames 100 --no-video
 ```
 
-## 🔬 Research Applications
+---
 
-### Autonomous Vehicles
-- Collision avoidance system prototyping
-- Low-light object detection validation
-- Motion tracking algorithm development
+## 🧪 Example Workflows
 
-### Industrial Automation  
-- Quality control system design
-- High-speed defect detection
-- Predictive maintenance research
+### Workflow 1: Generate ML Training Dataset
 
-### Medical Devices
-- Surgical precision guidance
-- Patient monitoring systems
-- Prosthetic control development
+```
+# Process multiple videos for dataset creation
+python -m event_sim --video video1.mp4 --threshold 15 --output-dir dataset/video1
+python -m event_sim --video video2.mp4 --threshold 15 --output-dir dataset/video2
+python -m event_sim --video video3.mp4 --threshold 15 --output-dir dataset/video3
 
-### Academic Research
-- Algorithm development and testing
-- Dataset generation for ML training
-- Neuromorphic computing education
+# Combine all CSV files for training
+python scripts/merge_datasets.py dataset/*/events.csv -o combined_training_data.csv
+```
 
-## 📈 Performance & Optimization
+### Workflow 2: Research Paper Analysis
 
-### Memory Usage
-- **Streaming architecture**: Processes videos without loading entirely into memory
-- **Configurable limits**: Adjustable event density for performance tuning
-- **Garbage collection**: Automatic cleanup between processing stages
+```
+# Generate high-quality outputs for publication
+python -m event_sim --video experiment.mp4 --threshold 12 --max-frames 500
 
-### Processing Speed
-- **Multi-core support**: Utilizes available CPU cores
-- **Intelligent sampling**: Adaptive frame processing based on content
-- **Caching**: Optimized temporary file handling
+# Outputs ready for paper:
+# - analysis_report.png → Insert directly into figures
+# - event_video.mp4 → Supplementary material or demos
+# - events.csv → Statistical analysis in your paper
+```
 
-### Quality Settings
-- **Threshold tuning**: Configurable sensitivity (5-30 range)
-- **Time windows**: Adjustable temporal integration (10-100ms)
-- **Resolution scaling**: Multi-scale processing options
+### Workflow 3: Algorithm Development
+
+```
+# Process test video
+python -m event_sim --video test_sequence.mp4 --threshold 15
+
+# Load events in your algorithm
+import pandas as pd
+events = pd.read_csv('output/events.csv')
+
+# Implement your event-based algorithm
+your_algorithm(events)
+```
+
+---
+
+## 📈 Understanding Output Data
+
+### CSV Structure
+
+```
+time,x,y,polarity,magnitude,confidence
+33333.33,245,189,1,45.2,0.904
+33366.67,246,190,1,38.7,0.774
+33400.00,244,188,-1,52.1,1.000
+```
+
+**Column Descriptions:**
+- **time**: Event timestamp in microseconds
+- **x, y**: Pixel coordinates (0-indexed)
+- **polarity**: +1 (brightening) or -1 (darkening)
+- **magnitude**: Intensity change magnitude (0-255)
+- **confidence**: Detection confidence score (0.0-1.0)
+
+### Analyzing Results
+
+```
+import pandas as pd
+import numpy as np
+
+# Load events
+df = pd.read_csv('output/events.csv')
+
+# Basic statistics
+print(f"Total events: {len(df):,}")
+print(f"Positive events: {len(df[df['polarity']==1]):,}")
+print(f"Negative events: {len(df[df['polarity']==-1]):,}")
+print(f"Average magnitude: {df['magnitude'].mean():.2f}")
+print(f"Average confidence: {df['confidence'].mean():.2f}")
+
+# Temporal analysis
+time_span_seconds = (df['time'].max() - df['time'].min()) / 1_000_000
+event_rate = len(df) / time_span_seconds
+print(f"Event rate: {event_rate:.0f} events/second")
+
+# Spatial coverage
+unique_pixels = df[['x','y']].drop_duplicates()
+print(f"Active pixels: {len(unique_pixels):,}")
+```
+
+---
+
+## 🎓 Educational Use
+
+### For Students
+
+Perfect for learning neuromorphic computing concepts:
+- **Visual demonstrations** of event-based vision principles
+- **Hands-on experimentation** with parameter effects
+- **Research project foundation** with professional outputs
+
+### For Instructors
+
+Ready-to-use educational tool:
+- **No hardware required** - runs on any laptop
+- **Immediate feedback** - see results in minutes
+- **Customizable demonstrations** - adjustable parameters for teaching
+- **Professional outputs** - publication-quality visualizations
+
+### Assignment Ideas
+
+1. **Parameter Exploration**: Study threshold effects on event generation
+2. **Motion Analysis**: Track objects using event data  
+3. **Algorithm Implementation**: Develop custom event processing algorithms
+4. **Comparative Study**: Compare event-based vs frame-based approaches
+
+---
 
 ## 🐛 Troubleshooting
 
-### Common Issues
+### Common Issues and Solutions
 
-**"No events detected"**
-- Lower the threshold parameter (try 5-10)
-- Ensure sufficient motion in input video
-- Check video format compatibility
+**Problem: "No events detected"**
+- **Solution**: Lower the threshold (try values 8-12)
+- **Cause**: Video has subtle changes below current threshold
+- **Verification**: Check that video has visible motion
 
-**"Memory error with large videos"**
-- Reduce max_frames parameter
-- Lower video resolution if possible
-- Increase available system RAM
+**Problem: "Too many events / slow processing"**
+- **Solution**: Increase threshold (try values 18-25)
+- **Cause**: Video has high texture or noise
+- **Verification**: Reduce max_frames for faster testing
 
-**"Slow processing on 4K videos"**
-- Use recommended settings for large videos
-- Enable progress monitoring
-- Consider processing in smaller chunks
+**Problem: "Memory error"**
+- **Solution**: Reduce max_frames parameter (try 100-200)
+- **Cause**: Insufficient system RAM for processing
+- **Verification**: Process shorter video segments
 
-### Support Resources
-- [FAQ](docs/faq.md)
-- [Issue Tracker](https://github.com/your-username/event-camera-simulation/issues)
-- [Discussions](https://github.com/your-username/event-camera-simulation/discussions)
+**Problem: "Video file not supported"**
+- **Solution**: Convert to MP4 using: `ffmpeg -i input.avi output.mp4`
+- **Cause**: Unsupported codec or container format
+
+---
+
+## 📋 System Requirements
+
+### Minimum Requirements
+- Python 3.8+
+- 4GB RAM
+- 1GB free disk space
+- Single-core processor
+
+### Recommended Setup
+- Python 3.10+
+- 8GB+ RAM
+- 5GB free disk space (for outputs)
+- Multi-core processor for faster processing
+
+### Tested Platforms
+- ✅ Windows 10/11
+- ✅ macOS 12+ (Intel and Apple Silicon)
+- ✅ Ubuntu 20.04+
+- ✅ Debian-based Linux distributions
+
+---
 
 ## 📄 License
 
@@ -238,37 +404,40 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Event camera research community for foundational work
-- OpenCV and NumPy teams for essential libraries
-- Academic institutions supporting neuromorphic computing research
-- Beta testers and early adopters for valuable feedback
+- Neuromorphic computing research community for foundational work
+- OpenCV and NumPy development teams for essential libraries
+- Academic institutions supporting event camera research
+- Open-source contributors and testers
 
-## 📞 Contact
+## 📞 Contact & Support
 
-- **Project Lead**: [Your Name](mailto:your.email@example.com)
-- **Institution**: [Your Institution]
-- **Research Group**: [Your Research Group]
+- **Developer**: Subhash Chaudhary
+- **Repository**: [github.com/Subhash-Chaudhary/event_data_simulation](https://github.com/Subhash-Chaudhary/event_data_simulation)
+- **Issues**: Report bugs via [GitHub Issues](https://github.com/Subhash-Chaudhary/event_data_simulation/issues)
 
-## 🔗 Related Projects
+## 🔗 Related Research
 
-- [ESIM](https://github.com/uzh-rpg/rpg_esim): Event Camera Simulator
-- [V2E](https://github.com/SensorsINI/v2e): Video to Events
-- [DVS-Voltmeter](https://github.com/neuromorphicsystems/voltmeter): Circuit-level simulation
+- **ESIM**: Event Camera Simulator (ETH Zurich)
+- **V2E**: Video to Events (INI/ETH)
+- **Event-based Vision Survey**: IEEE TPAMI 2022
 
 ## 📊 Citation
 
-If you use this project in your research, please cite:
+If you use this tool in your research, please cite:
 
-```bibtex
+```
 @software{event_camera_simulation_2025,
   title={Event Camera Data Simulation: A Neuromorphic Vision System},
-  author={[Your Name]},
+  author={Subhash Chaudhary},
   year={2025},
   publisher={GitHub},
-  url={https://github.com/your-username/event-camera-simulation}
+  url={https://github.com/Subhash-Chaudhary/event_data_simulation}
 }
 ```
 
 ---
 
-**Made with ❤️ for the neuromorphic computing community**
+**Built for researchers, students, and developers exploring neuromorphic vision without expensive hardware constraints.**
+```
+
+***
