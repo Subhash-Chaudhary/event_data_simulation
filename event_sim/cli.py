@@ -60,10 +60,12 @@ Examples:
         help='Event detection threshold (3-50, default: 15)'
     )
     processing_group.add_argument(
-        '--max-frames', '-f',
-        type=int,
-        help='Maximum frames to process (default: 300)'
-    )
+    '--max-frames', '-f',
+    type=int,
+    default=None,
+    help='Maximum frames to process (default: all frames)'
+)
+
     processing_group.add_argument(
         '--time-window',
         type=float,
@@ -335,7 +337,7 @@ def process_video_with_configuration(video_path: str, config_overrides: Dict[str
         
         events_df = detector.process_video_stream(
             video_path,
-            max_frames=config_overrides.get('max_frames', 300),
+            max_frames=config_overrides.get('max_frames', 5000),
             progress_callback=progress_callback
         )
         
